@@ -1,0 +1,16 @@
+{% extends 'cal/base.html' %}
+
+{% block title %}
+Tem certeza que desejar deletar "{{evento.title}}"?
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="">
+    {% csrf_token %}
+
+    <a href="{% url 'cal:event_info' evento.id %}">Voltar</a>
+    <br>
+    <input type="submit" value="Confirmar">
+
+</form>
+{% endblock content%}

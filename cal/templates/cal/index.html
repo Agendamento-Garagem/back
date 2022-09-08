@@ -1,0 +1,14 @@
+{% extends 'cal/base.html' %}
+
+{% block title %}
+Agendamento: {{evento.title}}
+{% endblock %}
+
+{% block content%}
+<h1>Garagem </h1>
+<a href="/create"> Cadastro de Usuário</a><br>
+
+<a href="/painel"> Painel de Login</a><br>
+
+<a href="{% url 'cal:calendar' %}">clica aqui se for homem</a>
+{% endblock %}
