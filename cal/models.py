@@ -15,10 +15,11 @@ class Event(models.Model):
     
     @property
     def get_html_time(self):
-        if(self.start_time.minute == 0):
-            return f'<p> {self.start_time.hour}h00 <p>'
+        duracao = 2
+        if(int(self.start_time.minute) == 0):
+            return f'<p> {self.start_time.hour}h00 - {self.start_time.hour + 2}h00<p>'
         else:
-            return f'<p> {self.start_time.hour}h{self.start_time.minute} <p>'
+            return f'<p> {self.start_time.hour}h{self.start_time.minute} - {self.start_time.hour + 2}h{self.start_time.minute}<p>'
     
     @property
     def get_hour(self):

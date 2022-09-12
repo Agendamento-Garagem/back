@@ -107,7 +107,7 @@ def dologin(request):
     else:
         data['msg'] = 'Usuário ou Senha inválidos!'
         data['class'] = 'alert-danger'
-        return render(request,'cal/painel.html',data)
+        return render(request,'cal/painel.html', data)
     
 def dashboard(request):
     return HttpResponse('jason deruloooo')
