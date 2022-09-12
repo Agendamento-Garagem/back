@@ -25,17 +25,3 @@ class Event(models.Model):
     def get_hour(self):
         return self.start_time.hour
 
-CURSO_CHOICES = (
-    ('d', 'Design'),
-    ('c', 'Ciência da Computação')
-)
-    
-
-
-class Usuario(models.Model):
-    nome = models.CharField(max_length=20, null=False)
-    email = models.EmailField(null=False)
-    curso = models.CharField(max_length=1, blank=True, null=False, choices=CURSO_CHOICES)
-    matricula = models.IntegerField()
-    telefone = models.IntegerField(default=0, verbose_name="Numero do telefone verboso")
-

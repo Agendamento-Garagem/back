@@ -1,7 +1,11 @@
 {% extends 'cal/base.html' %}
 
 {% block title %}
+{% if request.user.is_authenticated %}
 <strong><a href="{%url 'cal:index' %}">Agendamento do Garagem</a></strong>
+<span>Olá, {{request.user}}</span>
+<span><a href="{% url 'cal:logout' %}">Logout</a></span>
+{% endif %}
 {% endblock %}
 
 
@@ -19,6 +23,8 @@
 
 {% else %}
 <h1>Você não tem acesso a essa área!</h1>
+<h2>Faça login para ver os agendamentos</h2>
+<h2><a href="{% url 'cal:index' %}">Home</a></h2>
 {% endif %}
 
 {% endblock %}

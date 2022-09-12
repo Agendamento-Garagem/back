@@ -5,15 +5,13 @@ app_name = 'cal'
 urlpatterns = [
     path('', views.index, name='index'),
     path('calendar/', views.CalendarView.as_view(), name='calendar'),
+    
     path('^event/new/$', views.event, name='event_new'),
 	path('event/info/<str:pk>/', views.info_event, name='event_info'),
     path('event/info/<str:event_id>/edit', views.event, name='event_edit'),
     path('event/info/<str:pk>/delete/', views.delete_event, name="event_delete"),
 
-    #cris
-    path('store/',views.store, name="store"),
-    path('create/', views.create, name="create"),
-    path('painel/',views.painel, name="painel"),
-    path('dologin/',views.dologin, name="dologin"),
-    path('dashboard/',views.dashboard, name="dashboard")
+    path('register/', views.register, name="register"),
+    path('login/',views.loginPage, name="login"),
+    path('logout /',views.logoutUser, name="logout"),
 ]

@@ -1,13 +1,18 @@
 from datetime import datetime, timedelta, date
+from multiprocessing import context
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
-from . models import Event, Usuario
+from . models import Event
+from .forms import CreateFormUser
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 from .models import *
 from .utils import Calendar
@@ -49,6 +54,7 @@ def next_month(d):
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
 
+@login_required(login_url='cal:login')
 def event(request, event_id=None):
     instance = Event()
     if event_id:
@@ -62,12 +68,13 @@ def event(request, event_id=None):
         return HttpResponseRedirect(reverse('cal:calendar'))
     return render(request, 'cal/event.html', {'form': form})
 
+@login_required(login_url='cal:login')
 def info_event(request, pk):
     evento = Event.objects.get(id=pk)
     context = {'evento': evento}
     return render(request, 'cal/info.html', context)
     
-
+@login_required(login_url='cal:login')
 def delete_event(request, pk):
     evento = Event.objects.get(id=pk)
     context = {'evento': evento}
@@ -79,35 +86,41 @@ def delete_event(request, pk):
     return render(request, 'cal/delete.html', context)
     return HttpResponse('deus me ajuda') 
 
-#crisssssssssssssssss
-def create(request):
-    return render(request, "cal/create.html")
-
-def painel(request):
-    return render(request,'cal/painel.html')
-
-
-def store(request):
-    data = {}
-    if(request.POST['password'] != request.POST['password-conf']):
-        data['msg'] = 'Senha e confirmação de senha diferentes!'
-        data['class'] = 'alert-danger'
+def register(request):
+    if request.user.is_authenticated:
+        return redirect('cal:calendar')
     else:
-        user = User.objects.create_user(request.POST['name'], request.POST['email'], request.POST['password'])
-        data['msg'] = 'Usuário cadastrado com sucesso!'
-        data['class'] = 'alert-danger'
-    return render(request, "cal/create.html",data)
+        form = CreateFormUser()
+        if(request.method == 'POST'):
+            form = CreateFormUser(request.POST)
+            if(form.is_valid()):
+                form.save()
 
-def dologin(request):
-    data = {}
-    user = authenticate(username=request.POST['user'], password=request.POST['password'])
-    if user is not None:
-        login(request, user)
-        return redirect('/calendar/')
+                user = form.cleaned_data.get('username')
+                messages.success(request, 'A conta foi criada para ' + user)
+
+                return redirect('cal:login')
+
+    context = {'form': form}
+    return render(request, "cal/register.html", context)
+
+def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('cal:calendar')
     else:
-        data['msg'] = 'Usuário ou Senha inválidos!'
-        data['class'] = 'alert-danger'
-        return render(request,'cal/painel.html', data)
-    
-def dashboard(request):
-    return HttpResponse('jason deruloooo')
+        if(request.method == 'POST'):
+
+            user = authenticate(username=request.POST['username'], password=request.POST['password'])
+            if user is not None:
+                print('a')
+                login(request, user)
+                return redirect('cal:calendar')
+            else:
+                messages.info(request, "Usuário ou senha está incorreto.")
+
+    context = {}       
+    return render(request,'cal/login.html', context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('cal:index')
