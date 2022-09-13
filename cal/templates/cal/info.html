@@ -11,15 +11,18 @@ Agendamento: {{evento.title}}
 
 <div class="informacao">
     <h2><strong>Nome do agendamento: </strong>{{evento.title}}</h2>
+    <h2><strong>Host: </strong>{{evento.host}}</h2>
     <h2><strong>Descrição: </strong>{{evento.description}}</h2>
     <h2><strong>Data e hora: </strong>{{evento.start_time}}</h2>
 
 </div>
 
+{% if request.user == evento.host %}
 <div class="clearfix">
     <a class="btn btn-info left" href="{% url 'cal:event_edit' evento.id%}"> Editar </a>
 </div>
 <div class="clearfix">
     <a class="btn btn-info left" href="{% url 'cal:event_delete' evento.id%}"> Deletar </a>
 </div>
+{% endif %}
 {% endblock content %}

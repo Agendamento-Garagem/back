@@ -79,6 +79,9 @@ def delete_event(request, pk):
     evento = Event.objects.get(id=pk)
     context = {'evento': evento}
 
+    if request.user != evento.host:
+        return('Você não tem acesso a essa área')
+            
     if request.method == 'POST':
         evento.delete()
         return redirect('cal:calendar')
