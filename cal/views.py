@@ -64,8 +64,11 @@ def event(request, event_id=None):
 
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
-        form.save()
+        obj = form.save(commit=False) # Return an object without saving to the DB
+        obj.host = request.user # Add an author field which will contain current user's id
+        obj.save() # Save the final "real form" to the DB
         return HttpResponseRedirect(reverse('cal:calendar'))
+
     return render(request, 'cal/event.html', {'form': form})
 
 @login_required(login_url='cal:login')
