@@ -15,7 +15,7 @@ class Calendar(HTMLCalendar):
 		d = ''
 		for event in events_per_day:
 			print(event.get_hour)
-			d += f'<li class="item"> {event.get_html_time}{event.get_html_url} </li>'
+			d += f'<li class="item"> {event.get_html_time}{event.get_html_url}{event.get_confirmation}</li>'
 
 		if day != 0:
 			return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"

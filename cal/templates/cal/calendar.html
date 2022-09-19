@@ -3,7 +3,11 @@
 {% block title %}
 {% if request.user.is_authenticated %}
 <strong><a href="{%url 'cal:index' %}">Agendamento do Garagem</a></strong>
+{% if request.user.is_superuser %}
+<span>Olá, ADM {{request.user}}</span>
+{% else %}
 <span>Olá, {{request.user}}</span>
+{% endif %}
 <span><a href="{% url 'cal:logout' %}">Logout</a></span>
 {% endif %}
 {% endblock %}

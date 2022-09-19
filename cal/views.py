@@ -74,7 +74,11 @@ def event(request, event_id=None):
 @login_required(login_url='cal:login')
 def info_event(request, pk):
     evento = Event.objects.get(id=pk)
-    context = {'evento': evento}
+
+    superuser = request.user
+
+
+    context = {'evento': evento, 'super': superuser}
     return render(request, 'cal/info.html', context)
     
 @login_required(login_url='cal:login')
@@ -130,3 +134,15 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('cal:index')
+
+def confirmation_event(request, pk):
+    evento = Event.objects.get(id=pk)
+    superuser = request.user
+    context = {'evento': evento, 'super': superuser}
+    
+    if request.method == 'POST':
+        evento.pending = True
+        evento.save()
+        return redirect('cal:calendar')
+
+    return render(request, 'cal/confirm.html', context)
