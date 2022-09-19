@@ -8,10 +8,10 @@ git clone https://github.com/Agendamento-Garagem/django-calendar.git
 cd django-calendar
 
 virtualenv env
-source env/bin/activate
-pip3 install django
+env\scripts\activate
+pip install django
 
-python3 manage.py migrate
-python3 manage.py runserver
+python manage.py migrate
+python manage.py runserver
 ```
 local: http://localhost:8000/calendar/!
