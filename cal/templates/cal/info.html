@@ -17,7 +17,7 @@ Agendamento: {{evento.title}}
     {% if evento.pending == False %}
     <h2><strong>Condição: </strong> Pendente</h2>
     {% elif evento.pending == True %}
-    <h2><strong>Condição: </strong> Confirmado por {{super}}</h2>
+    <h2><strong>Situação: </strong> Confirmado por {{evento.adm}}</h2>
     {% endif %}
 
 </div>

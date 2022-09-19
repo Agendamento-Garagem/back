@@ -9,6 +9,7 @@ class Event(models.Model):
     description = models.TextField()
     start_time = models.DateTimeField()
     pending = models.BooleanField(default=False)
+    adm = models.CharField(max_length=200, default='')
 
     
 

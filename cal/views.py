@@ -6,7 +6,7 @@ from django.views import generic
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
-from . models import Event
+from .models import Event
 from .forms import CreateFormUser
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -74,11 +74,12 @@ def event(request, event_id=None):
 @login_required(login_url='cal:login')
 def info_event(request, pk):
     evento = Event.objects.get(id=pk)
+    
+    if evento.pending != True:
+        evento.adm = str(request.user)
+        evento.save()
 
-    superuser = request.user
-
-
-    context = {'evento': evento, 'super': superuser}
+    context = {'evento': evento}
     return render(request, 'cal/info.html', context)
     
 @login_required(login_url='cal:login')
@@ -86,7 +87,7 @@ def delete_event(request, pk):
     evento = Event.objects.get(id=pk)
     context = {'evento': evento}
 
-    if request.user != evento.host:
+    if request.user != evento.host and not request.user.is_superuser:
         return('Você não tem acesso a essa área')
             
     if request.method == 'POST':
