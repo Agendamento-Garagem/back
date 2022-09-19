@@ -1,10 +1,10 @@
-# Agendamento-Garagemaaaaa
-Full calendar built using Django. Tutorial part i [here](https://www.huiwenteo.com/normal/2018/07/24/django-calendar.html) and part ii [here](https://www.huiwenteo.com/normal/2018/07/29/django-calendar-ii.html)! :)
+# Agendamento-Garagem
+tutorial 1: (https://www.huiwenteo.com/normal/2018/07/24/django-calendar.html)<br> tutorial 2: [here](https://www.huiwenteo.com/normal/2018/07/29/django-calendar-ii.html)
 
-# Usage
-Clone this repo, setup virtualenv, install Django
+# Setando o ambiente
+Clone repo, setup virtualenv, install Django
 ```
-git clone https://github.com/huiwenhw/django-calendar
+git clone https://github.com/Agendamento-Garagem/django-calendar.git
 cd django-calendar
 
 virtualenv env
@@ -14,8 +14,4 @@ pip3 install django
 python3 manage.py migrate
 python3 manage.py runserver
 ```
-Find the app running at http://localhost:8000/calendar/!
-
-<img src=/images/calendar_v2.0.png/>
-<img src=/images/calendar_v2.0_form_new.png/>
-<img src=/images/calendar_v2.0_form_edit.png/>
+local: http://localhost:8000/calendar/!
