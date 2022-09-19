@@ -33,7 +33,7 @@ class Event(models.Model):
         if self.pending == False:
             return f'<span style="color: red"> Pendente </span>'
         elif self.pending == True:
-            return f'<span style="color: lime"> Confirmado </span>'
+            return f'<span style="color: lime"> Confirmado </span><span>({self.adm})</span>'
 
     @property
     def get_html_url(self):
