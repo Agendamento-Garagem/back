@@ -95,7 +95,7 @@ def delete_event(request, pk):
         return redirect('cal:calendar')
     
     return render(request, 'cal/delete.html', context)
-    return HttpResponse('deus me ajuda') 
+
 
 def register(request):
     if request.user.is_authenticated:

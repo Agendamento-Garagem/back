@@ -1,15 +1,15 @@
 {% extends 'cal/base.html' %}
 
 {% block title %}
-Tem certeza que desejar deletar "{{evento.title}}"?
+Tem certeza que desejar negar "{{evento.title}}"?
 {% endblock %}
 
 {% block content %}
 <form method="POST" action="">
     {% csrf_token %}
+
     <a class="btn btn-info left" href="{% url 'cal:event_info' evento.id %}?"> Voltar </a>
     <input type="submit" class="btn btn-info left" href="{% url 'cal:event_info' evento.id %}?" value="Confirmar"></input>
-
 
 </form>
 {% endblock content%}

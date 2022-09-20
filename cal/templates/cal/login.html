@@ -1,7 +1,9 @@
 {% extends 'cal/base.html' %}
 
 {% block title %}
-Agendamento:
+<div class="CenterTitle">
+<a href="{%url 'cal:index' %}" >Agendamento do Garagem</a>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -23,14 +25,14 @@ Agendamento:
             margin: 0;
             padding: 0;
             height: 100%;
-            background: #7abecc !important;
+            background: #FFFFFF !important;
         }
 
         .user_card {
             width: 350px;
             margin-top: auto;
             margin-bottom: auto;
-            background: #74cfbf;
+            background: lightgrey;
             position: relative;
             display: flex;
             justify-content: center;
@@ -54,7 +56,7 @@ Agendamento:
 
         .login_btn {
             width: 100%;
-            background: #33ccff !important;
+            background: grey !important;
             color: white !important;
         }
 
@@ -124,7 +126,7 @@ Agendamento:
 
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
-                        Don't have an account? <a href="{% url 'cal:register' %}" class="ml-2">Sign Up</a>
+                        Não tem uma conta? <a href="{% url 'cal:register' %}" class="ml-2">Cadastre-se</a>
                     </div>
                     {% for message in messages %}
                     <p id="messages">{{message}}</p>

@@ -23,9 +23,11 @@ Agendamento: {{evento.title}}
 </div>
 
 {% if request.user == evento.host or request.user.is_superuser%}
-<div class="clearfix">
-    <a class="btn btn-info left" href="{% url 'cal:event_edit' evento.id%}"> Editar </a>
-</div>
+    {%if evento.pending == False or request.user.is_superuser%}
+    <div class="clearfix">
+        <a class="btn btn-info left" href="{% url 'cal:event_edit' evento.id%}"> Editar </a>
+    </div>
+    {%endif%}
 <div class="clearfix">
     <a class="btn btn-info left" href="{% url 'cal:event_delete' evento.id%}"> Deletar </a>
 </div>

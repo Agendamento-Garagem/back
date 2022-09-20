@@ -1,14 +1,14 @@
 {% extends 'cal/base.html' %}
 
-{% block title %}
+{% block header %}
 {% if request.user.is_authenticated %}
-<strong><a href="{%url 'cal:index' %}">Agendamento do Garagem</a></strong>
+<strong><a href="{%url 'cal:index' %}" >Agendamento do Garagem</a></strong>
 {% if request.user.is_superuser %}
-<span>Olá, ADM {{request.user}}</span>
+<span >Olá, ADM {{request.user}}</span>
 {% else %}
-<span>Olá, {{request.user}}</span>
+<span >Olá, {{request.user}}</span>
 {% endif %}
-<span><a href="{% url 'cal:logout' %}">Logout</a></span>
+<span ><a href="{% url 'cal:logout' %}">Logout</a></span>
 {% endif %}
 {% endblock %}
 
@@ -28,7 +28,7 @@
 {% else %}
 <h1>Você não tem acesso a essa área!</h1>
 <h2>Faça login para ver os agendamentos</h2>
-<h2><a href="{% url 'cal:index' %}">Home</a></h2>
+<h2><a href="{% url 'cal:login' %}">Login</a></h2>
 {% endif %}
 
 {% endblock %}

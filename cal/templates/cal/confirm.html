@@ -8,9 +8,8 @@ Tem certeza que desejar confirmar "{{evento.title}}"?
 <form method="POST" action="">
     {% csrf_token %}
 
-    <a href="{% url 'cal:event_info' evento.id %}">Voltar</a>
-    <br>
-    <input type="submit" value="Confirmar">
+    <a class="btn btn-info left" href="{% url 'cal:event_info' evento.id %}?"> Voltar </a>
+    <input type="submit" class="btn btn-info left" href="{% url 'cal:event_info' evento.id %}?" value="Confirmar"></input>
 
 </form>
 {% endblock content%}

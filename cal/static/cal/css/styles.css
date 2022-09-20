@@ -41,6 +41,12 @@ body {
 /* App styles */
 .title {
   display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.header {
+  display: flex;
   justify-content: space-between;
   margin: 10px;
 }
@@ -91,4 +97,15 @@ a {
 
 .item {
   font-size: 15px;
+}
+
+.index {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.CenterTitle {
+  display:flex;
+  justify-content: center;
 }
