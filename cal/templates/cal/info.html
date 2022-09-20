@@ -14,20 +14,22 @@ Agendamento: {{evento.title}}
     <h2><strong>Host: </strong>{{evento.host}}</h2>
     <h2><strong>Descrição: </strong>{{evento.description}}</h2>
     <h2><strong>Data e hora: </strong>{{evento.start_time}}</h2>
-    {% if evento.pending == False %}
-    <h2><strong>Condição: </strong> Pendente</h2>
-    {% elif evento.pending == True %}
+    {% if evento.pending == 0 %}
+    <h2><strong>Situação: </strong> Pendente</h2>
+    {% elif evento.pending == 1 %}
     <h2><strong>Situação: </strong> Confirmado por {{evento.adm}}</h2>
+    {% elif evento.pending == 2 %}
+    <h2><strong>Situação: </strong> Negado por {{evento.adm}}. "a{{evento.reason}}"</h2>
     {% endif %}
 
 </div>
 
 {% if request.user == evento.host or request.user.is_superuser%}
-    {%if evento.pending == 0 or request.user.is_superuser%}
-    <div class="clearfix">
-        <a class="btn btn-info left" href="{% url 'cal:event_edit' evento.id%}"> Editar </a>
-    </div>
-    {%endif%}
+{%if evento.pending == 0 or request.user.is_superuser%}
+<div class="clearfix">
+    <a class="btn btn-info left" href="{% url 'cal:event_edit' evento.id%}"> Editar </a>
+</div>
+{%endif%}
 <div class="clearfix">
     <a class="btn btn-info left" href="{% url 'cal:event_delete' evento.id%}"> Deletar </a>
 </div>

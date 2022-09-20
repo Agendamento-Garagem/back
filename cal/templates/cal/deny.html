@@ -5,11 +5,32 @@ Tem certeza que desejar negar "{{evento.title}}"?
 {% endblock %}
 
 {% block content %}
-<form method="POST" action="">
+<div class="clearfix">
+    <a class="btn btn-info left" href="{% url 'cal:calendar' %}"> Calendário </a>
+</div>
+
+{% if form.errors %}
+{% for field in form %}
+{% for error in field.errors %}
+<div class="alert alert-danger">
+    {{ field.label }} <strong>{{ error|escape }}</strong>
+</div>
+{% endfor %}
+{% endfor %}
+{% for error in form.non_field_errors %}
+<div class="alert alert-danger">
+    {{ field.label }} <strong>{{ error|escape }}</strong>
+</div>
+{% endfor %}
+{% endif %}
+
+<form method="post">
     {% csrf_token %}
-
-    <a class="btn btn-info left" href="{% url 'cal:event_info' evento.id %}?"> Voltar </a>
-    <input type="submit" class="btn btn-info left" href="{% url 'cal:event_info' evento.id %}?" value="Negar"></input>
-
+    <table class="form form-table">
+        {{ form }}
+        <tr>
+            <td colspan="2"><button type="submit" class="btn btn-info right"> Submit </button></td>
+        </tr>
+    </table>
 </form>
-{% endblock content%}
+{% endblock %}

@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
 from .models import Event
-from .forms import CreateFormUser
+from .forms import CreateFormReason, CreateFormUser
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -75,7 +75,7 @@ def event(request, event_id=None):
 def info_event(request, pk):
     evento = Event.objects.get(id=pk)
     
-    if evento.pending != True:
+    if evento.pending != 1 or evento.pending != 2:
         evento.adm = str(request.user)
         evento.save()
 
@@ -138,8 +138,7 @@ def logoutUser(request):
 
 def confirmation_event(request, pk):
     evento = Event.objects.get(id=pk)
-    superuser = request.user
-    context = {'evento': evento, 'super': superuser}
+    context = {'evento': evento}
     
     if request.method == 'POST':
         evento.pending = 1
@@ -151,11 +150,18 @@ def confirmation_event(request, pk):
 def deny_event(request, pk):
     evento = Event.objects.get(id=pk)
     superuser = request.user
-    context = {'evento': evento, 'super': superuser}
+    form = CreateFormReason()
+    
     
     if request.method == 'POST':
+        form = CreateFormReason(request.POST)
+        if(form.is_valid()):
+            form.save()
+        
+
         evento.pending = 2
         evento.save()
         return redirect('cal:calendar')
 
+    context = {'evento': evento, 'super': superuser, 'form': form}
     return render(request, 'cal/deny.html', context)

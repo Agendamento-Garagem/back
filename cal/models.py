@@ -10,6 +10,7 @@ class Event(models.Model):
     start_time = models.DateTimeField()
     pending = models.IntegerField(default=0)
     adm = models.CharField(max_length=200, default='')
+    reason = models.TextField(default='')
 
     
 
