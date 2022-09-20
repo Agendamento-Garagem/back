@@ -8,7 +8,7 @@ class Event(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     start_time = models.DateTimeField()
-    pending = models.BooleanField(default=False)
+    pending = models.IntegerField(default=0)
     adm = models.CharField(max_length=200, default='')
 
     
@@ -30,10 +30,12 @@ class Event(models.Model):
     @property
     def get_confirmation(self):
 
-        if self.pending == False:
-            return f'<span style="color: red"> Pendente </span>'
-        elif self.pending == True:
+        if self.pending == 0:
+            return f'<span style="color: #C8BA08"> Pendente </span>'
+        elif self.pending == 1:
             return f'<span style="color: lime"> Confirmado </span><span>({self.adm})</span>'
+        elif self.pending == 2:
+            return f'<span style="color: red"> Negado </span><span>({self.adm})</span>'
 
     @property
     def get_html_url(self):

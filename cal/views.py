@@ -142,8 +142,20 @@ def confirmation_event(request, pk):
     context = {'evento': evento, 'super': superuser}
     
     if request.method == 'POST':
-        evento.pending = True
+        evento.pending = 1
         evento.save()
         return redirect('cal:calendar')
 
     return render(request, 'cal/confirm.html', context)
+
+def deny_event(request, pk):
+    evento = Event.objects.get(id=pk)
+    superuser = request.user
+    context = {'evento': evento, 'super': superuser}
+    
+    if request.method == 'POST':
+        evento.pending = 2
+        evento.save()
+        return redirect('cal:calendar')
+
+    return render(request, 'cal/deny.html', context)
