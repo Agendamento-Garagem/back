@@ -1,7 +1,10 @@
+from email.policy import default
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+class Reason(models.Model):
+    reason = models.TextField()
 
 class Event(models.Model):
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -10,6 +13,7 @@ class Event(models.Model):
     start_time = models.DateTimeField()
     pending = models.IntegerField(default=0)
     adm = models.CharField(max_length=200, default='')
+    reason = models.TextField(default='')
 
     
 

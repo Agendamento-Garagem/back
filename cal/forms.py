@@ -1,7 +1,8 @@
+from csv import field_size_limit
 from django.forms import ModelForm, DateInput
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from cal.models import Event
+from cal.models import Event, Reason
 
 class EventForm(ModelForm):
   class Meta:
@@ -23,3 +24,8 @@ class CreateFormUser(UserCreationForm):
   class Meta:
     model = User
     fields = ['username', 'email', 'password1', 'password2']
+  
+class ReasonForm(ModelForm):
+  class Meta:
+    model = Reason
+    fields = '__all__'

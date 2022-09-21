@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
 from .models import Event
-from .forms import CreateFormUser
+from .forms import CreateFormUser, ReasonForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -75,7 +75,7 @@ def event(request, event_id=None):
 def info_event(request, pk):
     evento = Event.objects.get(id=pk)
     
-    if evento.pending != 1 or evento.pending != 2:
+    if evento.pending == 0:
         evento.adm = str(request.user)
         evento.save()
 
@@ -149,10 +149,16 @@ def confirmation_event(request, pk):
 
 def deny_event(request, pk):
     evento = Event.objects.get(id=pk)
-    context = {'evento': evento}
+    form = ReasonForm()
+
+    context = {'evento': evento, 'form':form}
     
     if request.method == 'POST':
+        form = ReasonForm(request.POST)
+        if(form.is_valid()):
+            form.save()
         
+        evento.reason = form.cleaned_data.get('reason')
         evento.pending = 2
         evento.save()
         return redirect('cal:calendar')

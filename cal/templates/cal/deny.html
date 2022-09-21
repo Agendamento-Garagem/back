@@ -8,6 +8,7 @@ Tem certeza que desejar negar "{{evento.title}}"?
 <form method="POST" action="">
     {% csrf_token %}
 
+    {{form}}
     <a class="btn btn-info left" href="{% url 'cal:event_info' evento.id %}?"> Voltar </a>
     <input type="submit" class="btn btn-info left" href="{% url 'cal:event_info' evento.id %}?" value="Negar"></input>
 

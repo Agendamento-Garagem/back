@@ -20,6 +20,7 @@ Agendamento: {{evento.title}}
     <h2><strong>Situação: </strong> Confirmado por {{evento.adm}}</h2>
     {% elif evento.pending == 2 %}
     <h2><strong>Situação: </strong> Negado por {{evento.adm}}</h2>
+    <h3><strong>Razão: </strong> {{evento.reason}}</h3>
     {% endif %}
 
 </div>
