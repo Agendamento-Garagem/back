@@ -75,7 +75,7 @@ def event(request, event_id=None):
 def info_event(request, pk):
     evento = Event.objects.get(id=pk)
     
-    if evento.pending != True:
+    if evento.pending != 1 or evento.pending != 2:
         evento.adm = str(request.user)
         evento.save()
 
@@ -138,8 +138,7 @@ def logoutUser(request):
 
 def confirmation_event(request, pk):
     evento = Event.objects.get(id=pk)
-    superuser = request.user
-    context = {'evento': evento, 'super': superuser}
+    context = {'evento': evento}
     
     if request.method == 'POST':
         evento.pending = 1
@@ -150,10 +149,10 @@ def confirmation_event(request, pk):
 
 def deny_event(request, pk):
     evento = Event.objects.get(id=pk)
-    superuser = request.user
-    context = {'evento': evento, 'super': superuser}
+    context = {'evento': evento}
     
     if request.method == 'POST':
+        
         evento.pending = 2
         evento.save()
         return redirect('cal:calendar')
