@@ -1,1 +1,1 @@
-web gunicorn agendamentodogaragem.wsgi:application --log-file -
+web gunicorn django-calendar.wsgi:application --log-file -
