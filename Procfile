@@ -1,0 +1,1 @@
+web gunicorn agendamentodogaragem.wsgi:application --log-file -
