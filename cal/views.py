@@ -102,9 +102,9 @@ def register(request):
         return redirect('cal:calendar')
     else:
         form = CreateFormUser()
-        if(request.method == 'POST'):
+        if request.method == 'POST':
             form = CreateFormUser(request.POST)
-            if(form.is_valid()):
+            if form.is_valid():
                 form.save()
 
                 user = form.cleaned_data.get('username')
