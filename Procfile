@@ -1,1 +1,0 @@
-web gunicorn djangocalendar.wsgi:application --log-file -
