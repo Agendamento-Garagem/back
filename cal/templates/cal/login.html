@@ -1,142 +1,42 @@
-{% extends 'cal/base.html' %}
-
-{% block title %}
-<div class="CenterTitle">
-<a href="{%url 'cal:index' %}" >Agendamento do Garagem</a>
-</div>
-{% endblock %}
-
-{% block content %}
+{% load static %}
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
-
-    <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background: #FFFFFF !important;
-        }
-
-        .user_card {
-            width: 350px;
-            margin-top: auto;
-            margin-bottom: auto;
-            background: lightgrey;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            padding: 10px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            border-radius: 5px;
-
-        }
-
-        .form_container {
-            margin-top: 20px;
-        }
-
-        #form-title {
-            color: #fff;
-
-        }
-
-        .login_btn {
-            width: 100%;
-            background: grey !important;
-            color: white !important;
-        }
-
-        .login_btn:focus {
-            box-shadow: none !important;
-            outline: 0px !important;
-        }
-
-        .login_container {
-            padding: 0 2rem;
-        }
-
-        .input-group-text {
-            background: #f7ba5b !important;
-            color: white !important;
-            border: 0 !important;
-            border-radius: 0.25rem 0 0 0.25rem !important;
-        }
-
-        .input_user,
-        .input_pass:focus {
-            box-shadow: none !important;
-            outline: 0px !important;
-        }
-
-        #messages {
-            background-color: grey;
-            color: #fff;
-            padding: 10px;
-            margin-top: 10px;
-        }
-    </style>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+    integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'cal/css/styles.css' %}">
+  <title>Agendamento do Garagem</title>
 </head>
 
 <body>
-    <div class="container h-100">
-        <div class="d-flex justify-content-center h-100">
-            <div class="user_card">
-                <div class="d-flex justify-content-center">
-
-
-                    <h3 id="form-title">LOGIN</h3>
-                </div>
-                <div class="d-flex justify-content-center form_container">
-                    <form method="POST" action="">
-                        {% csrf_token %}
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                            <input type="text" name="username" placeholder="Username..." class="form-control">
+    <section class="login-body" style="background-image: url('{% static 'cal/images/index.png' %}');">
+        <div class="rgba-color">
+            <div class="login-content">
+                <form method="post" class="login-form" action="{% url 'cal:login' %}">
+                    {% csrf_token %}
+                    <img src="{% static 'cal/images/register.svg' %}" alt="Cesar school logo" style="width: 200px;">
+                    <div class="input-box">
+                        <div class="login__field">
+                            <i class="login__icon fas fa-user"></i>
+                            <input type="text" name="username" id="username" class="login__input" placeholder="Nome de usuário">
                         </div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-                            <input type="password" name="password" placeholder="Password..." class="form-control">
+                        <div class="login__field">
+                            <i class="login__icon fas fa-lock"></i>
+                            <input type="password" name="password" id="password" class="login__input" placeholder="Senha">
                         </div>
-
-                        <div class="d-flex justify-content-center mt-3 login_container">
-                            <input class="btn login_btn" type="submit" value="Login">
-                        </div>
-                    </form>
-
-                </div>
-
-                <div class="mt-4">
-                    <div class="d-flex justify-content-center links">
-                        Não tem uma conta? <a href="{% url 'cal:register' %}" class="ml-2">Cadastre-se</a>
+                        <button type="submit" class="login__submit">Entrar</button>
                     </div>
-                    {% for message in messages %}
-                    <p id="messages">{{message}}</p>
-                    {% endfor %}
-
-                </div>
+                    {% if form.errors %}
+                        <p class="text-danger">Usuario/senha incorretos.</p>
+                    {% endif %}		
+                </form>
             </div>
         </div>
-    </div>
+    </section>
 </body>
-
 </html>
-{% endblock %}

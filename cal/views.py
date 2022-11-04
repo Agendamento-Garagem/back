@@ -120,7 +120,6 @@ def loginPage(request):
         return redirect('cal:calendar')
     else:
         if(request.method == 'POST'):
-
             user = authenticate(username=request.POST['username'], password=request.POST['password'])
             if user is not None:
                 print('a')
@@ -128,7 +127,6 @@ def loginPage(request):
                 return redirect('cal:calendar')
             else:
                 messages.info(request, "Usuário ou senha está incorreto.")
-
     context = {}       
     return render(request,'cal/login.html', context)
 

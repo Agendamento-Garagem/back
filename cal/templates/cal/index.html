@@ -13,24 +13,40 @@
   <title>Agendamento do Garagem</title>
 </head>
 <body>
-  <section class="index" style="background-image: url('{% static 'cal/images/index.png' %}');">
-    <div class="rgba-color">
-      <header class="CenterTitle">
-        <h1>Seja bem-vindo</h1>
-      </header>
-      {% block content%}
-      <div class="index-buttons">
-        <div class="index-content">
-          <img src="{% static 'cal/images/index.svg' %}" alt="cesar school logo">
-          <div class="buttons">
-            <a href="/register"> Cadastro de Usuário </a>
-            <a href="/login"> Painel de Login </a>
-            <a href="{% url 'cal:calendar' %}">Calendário</a>
+  {% if request.user.is_authenticated %}
+    <section class="index" style="background-image: url('{% static 'cal/images/index.png' %}');">
+      <div class="rgba-color">
+        <header class="CenterTitle">
+          <h1>Seja bem-vindo</h1>
+        </header>
+          <div class="index-buttons">
+            <div class="index-content">
+              <img src="{% static 'cal/images/index.svg' %}" alt="cesar school logo">
+              <div class="buttons2">
+                <a href="{% url 'cal:calendar' %}">Calendário</a>
+              </div>
+            </div>
           </div>
-        </div>
       </div>
-      {% endblock %}
-  </div>
-</section>
+    </section>
+    {% else %}
+      <section class="index" style="background-image: url('{% static 'cal/images/index.png' %}');">
+        <div class="rgba-color">
+          <header class="CenterTitle">
+            <h1>Seja bem-vindo</h1>
+          </header>
+            <div class="index-buttons">
+              <div class="index-content">
+                <img src="{% static 'cal/images/index.svg' %}" alt="cesar school logo">
+                <div class="buttons">
+                  <a href="/register"> Cadastro de Usuário </a>
+                  <a href="/login"> Painel de Login </a>
+                  <a href="{% url 'cal:calendar' %}">Calendário</a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+  {% endif %}
 </body>
 </html>
