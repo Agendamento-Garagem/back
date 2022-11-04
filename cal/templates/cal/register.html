@@ -1,16 +1,50 @@
-{% extends 'cal/base.html' %}
-
-{% block title %}
-Agendamento:
-{% endblock %}
-
-{% block content%}
-
-<form method="POST" action="">
-    {% csrf_token %}
-    {{form.as_p}}
-
-    <input type="submit" value="Criar Usuário">
-</form>
-<p>Já tem uma conta? <a href="{% url 'cal:login'%}">Faça login</a></p>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+    integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'cal/css/styles.css' %}">
+  <title>Agendamento do Garagem</title>
+</head>
+<body>
+    <section class="index" style="background-image: url('{% static 'cal/images/index.png' %}');">
+        <div class="rgba-color">
+          {% block content%}
+            <div class="register-buttons">
+                <div class="register-content">
+                    <a href="{% url 'cal:index' %}"><img src="{% static 'cal/images/register.svg' %}" alt="cesar school logo" class="register-img"></a>
+                    <form method="POST" action="" class="index-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="username" id="username" required />
+                            <label>Nome</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" required >
+                            <label>Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password1" id="password1" required >
+                            <label>Senha</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password2" id="password2" required >
+                            <label>Confirmar senha</label>
+                        </div>
+                        <button type="submit" value="Criar Usuário" class="index-form-button">Criar usuário</button>
+                    </form>
+                    <p class="register-link">Já possui cadastro? <a href="{% url 'cal:login'%}">Faça seu login aqui!</a></p>
+                    {{form.errors}}
+                </div>
+            </div>
+          {% endblock %}
+        </div>
+    </section>
+</body>
+</html>
