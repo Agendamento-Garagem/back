@@ -17,7 +17,7 @@
     <section class="login-body" style="background-image: url('{% static 'cal/images/index.png' %}');">
         <div class="rgba-color">
             <div class="login-content">
-                <form method="post" class="login-form" action="{% url 'cal:login' %}">
+                <form method="post" class="login-form">
                     {% csrf_token %}
                     <img src="{% static 'cal/images/register.svg' %}" alt="Cesar school logo" style="width: 200px;">
                     <div class="input-box">
@@ -31,10 +31,10 @@
                         </div>
                         <button type="submit" class="login__submit">Entrar</button>
                     </div>
-                    {% if form.errors %}
-                        <p class="text-danger">Usuario/senha incorretos.</p>
-                    {% endif %}		
                 </form>
+                {% if form.errors %}
+                    <p class="text-danger">Usuario/senha incorretos.</p>
+                {% endif %}		
             </div>
         </div>
     </section>

@@ -117,14 +117,14 @@ def register(request):
 
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('cal:calendar')
+        return redirect('cal:index')
     else:
         if(request.method == 'POST'):
             user = authenticate(username=request.POST['username'], password=request.POST['password'])
             if user is not None:
                 print('a')
                 login(request, user)
-                return redirect('cal:calendar')
+                return redirect('cal:index')
             else:
                 messages.info(request, "Usuário ou senha está incorreto.")
     context = {}       

@@ -29,6 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+AUTH_PROFILE_MODULE = 'cal.UserProfile'
+LOGIN_REDIRECT_URL = 'cal:calendar'
+
 
 # Application definition
 
