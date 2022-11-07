@@ -30,11 +30,11 @@
                             <input type="password" name="password" id="password" class="login__input" placeholder="Senha">
                         </div>
                         <button type="submit" class="login__submit">Entrar</button>
+                        {% if form.errors %}
+                            <span style="margin-top:20px; color:red;">Usuario/senha incorretos.</span>
+                        {% endif %}		
                     </div>
                 </form>
-                {% if form.errors %}
-                    <p class="text-danger">Usuario/senha incorretos.</p>
-                {% endif %}		
             </div>
         </div>
     </section>

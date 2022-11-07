@@ -13,9 +13,9 @@
   <title>Agendamento do Garagem</title>
 </head>
 <body>
-    <section class="index" style="background-image: url('{% static 'cal/images/index.png' %}');">
+    <section class="index" style="background-image: url('{% static 'cal/images/index.png' %}'); overflow:hidden;">
         <div class="rgba-color">
-          {% block content%}
+            {% block content%}
             <div class="register-buttons">
                 <div class="register-content">
                     <a href="{% url 'cal:index' %}"><img src="{% static 'cal/images/register.svg' %}" alt="cesar school logo" class="register-img"></a>
@@ -39,8 +39,12 @@
                         </div>
                         <button type="submit" value="Criar Usuário" class="index-form-button">Criar usuário</button>
                     </form>
+                    {% if form.errors %}
+                        <span style="color:red;">{{form.username.errors}}</span>
+                        <span style="color:red;">{{form.password2.errors}}</span>
+                        <span style="color:red;">{{form.email.errors}}</span>
+                    {% endif %}
                     <p class="register-link">Já possui cadastro? <a href="{% url 'cal:login'%}">Faça seu login aqui!</a></p>
-                    {{form.errors}}
                 </div>
             </div>
           {% endblock %}
