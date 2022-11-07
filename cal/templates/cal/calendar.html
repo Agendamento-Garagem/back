@@ -2,7 +2,7 @@
 
 {% block header %}
 {% if request.user.is_authenticated %}
-<strong><a href="{%url 'cal:index' %}" >Agendamento do Garagem</a></strong>
+<strong>Agendamento do Garagem</strong>
 {% if request.user.is_superuser %}
 <span >Olá, ADM {{request.user}}</span>
 {% else %}

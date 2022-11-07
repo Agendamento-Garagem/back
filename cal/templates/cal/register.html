@@ -9,8 +9,14 @@ Agendamento:
 <form method="POST" action="">
     {% csrf_token %}
     {{form.as_p}}
+    {%if messages%}
+        {%for message in messages%}
+            <ul><li>{{message}}</li></ul>
+            <br/>
+        {%endfor%}
+    {%endif%}
 
-    <input type="submit" value="Criar Usuário">
+    <input type="submit" value="Criar Usuário"/>
 </form>
 <p>Já tem uma conta? <a href="{% url 'cal:login'%}">Faça login</a></p>
 {% endblock %}

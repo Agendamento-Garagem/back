@@ -6,17 +6,14 @@ from django.views import generic
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
-from .models import Event
-from .forms import CreateFormUser, ReasonForm
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
+from .forms import *
 from .models import *
 from .utils import Calendar
-from .forms import EventForm
+
 
 def index(request):
     return render(request, 'cal/index.html')
@@ -96,25 +93,40 @@ def delete_event(request, pk):
     
     return render(request, 'cal/delete.html', context)
 
+def is_unique(email):
+    objects = UserCreationForm.objects.all()
+    print(objects)
+    for user in objects:
+        print(user)
+        if user == email:
+            print("falso")
+            return False
+    return True
 
+# so falta checar o email repetido
 def register(request):
     if request.user.is_authenticated:
         return redirect('cal:calendar')
     else:
-        form = CreateFormUser()
+        form = UserCreation()
         if request.method == 'POST':
-            form = CreateFormUser(request.POST)
+            form = UserCreation(request.POST)
             if form.is_valid():
-                form.save()
+                form.save(commit=False)
+                splitted = request.POST['email'].split('@')[1]
+                if (splitted=='cesar.school' or splitted == 'cesar.org.br'):
+                    form.save()
 
-                user = form.cleaned_data.get('username')
-                messages.success(request, 'A conta foi criada para ' + user)
+                    user = form.cleaned_data.get('username')
+                    messages.success(request, 'A conta foi criada para ' + user)
 
-                return redirect('cal:login')
+                    return redirect('cal:login')
+                else:
+                    messages.error(request,"Email inválido")
+                    return redirect('cal:register')
 
     context = {'form': form}
     return render(request, "cal/register.html", context)
-
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('cal:calendar')
