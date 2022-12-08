@@ -1,10 +1,8 @@
 /* Common styles */
-/* body {
-  font-family: "ptsans", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-} */
 body {
-  font-family:'Times New Roman', Times, serif;
+  font-family: "ptsans", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
 .left {
   float: left;
 }
