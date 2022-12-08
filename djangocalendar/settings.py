@@ -25,9 +25,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4y2^moidr-z*rj794*e4_*(i_yu77mr*%9l*b3+p$htz454efh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+
+# @VM
+# ALLOWED_HOSTS = ['172.35.6.79','localhost']
 
 
 # Application definition
@@ -76,6 +79,20 @@ WSGI_APPLICATION = 'djangocalendar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+
+# @VM
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'agendamento_garagem',
+#         'USER': 'aluno',
+#         'PASSWORD': 'garageschool',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -83,7 +100,7 @@ DATABASES = {
     }
 }
 
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -121,9 +138,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 # Physical system path where the static files are stored.
-STATIC_ROOT = os.path.join(BASE_DIR, 'static').replace('\\', '/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # URL that your STATIC files will be accessible through the browser.
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_URL = 'static/'
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 # django_heroku.settings(locals())

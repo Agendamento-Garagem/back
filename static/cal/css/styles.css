@@ -2,9 +2,11 @@
 /* body {
   font-family: "ptsans", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 } */
+
 body {
   font-family:'Times New Roman', Times, serif;
 }
+
 .left {
   float: left;
 }
@@ -90,7 +92,7 @@ ul {
 }
 
 a {
-  color: #17a2b4;
+  color: #17a2b8;
 }
 
 .informacao {
