@@ -12,12 +12,12 @@
   <link rel="stylesheet" type="text/css" href="{% static 'cal/css/styles.css' %}">
   <title>Agendamento do Garagem</title>
 </head>
-<body>
+<body style="background-color:black;">
 
 	<header class="calendar-head">
 		{% if request.user.is_authenticated %}
-		<h1><a href="{%url 'cal:index' %}" >Agendamento do Garagem</a></h1>
-		<span ><a href="{% url 'cal:logout' %}">Logout</a></span>
+		<a href="{% url 'cal:index' %}"><img src="{% static 'cal/images/register.svg' %}" alt="Cesar school logo" style="width: 100px; padding-top:5px;"></a>
+		<a href="{% url 'cal:logout' %}" class="logout">Logout</a>
 		{% endif %}
 	</header>
 	
@@ -27,19 +27,27 @@
 	{% if request.user.is_authenticated %}
 	<div class="calendar-content">
 		<div class="calendar-header">
-			<a class="btn btn-info" href="{% url 'cal:calendar' %}?{{ prev_month }}"> Mês anterior </a>
-			<a class="btn btn-info" href="{% url 'cal:calendar' %}?{{ next_month }}"> Próximo mês </a>
-			<a class="btn btn-info" href="{% url 'cal:event_new' %}"> Novo evento </a>
+			<a class="btn" href="{% url 'cal:event_new' %}"> Novo evento </a>
+			<div class="button-calendar">
+				<a class="btn" href="{% url 'cal:calendar' %}?{{ prev_month }}"> Mês anterior </a>
+				<a class="btn" href="{% url 'cal:calendar' %}?{{ next_month }}"> Próximo mês </a>
+			</div>
 		</div>
-	
 		{{ calendar }}
 	</div>
 	
 	
 	{% else %}
-	<h1>Você não tem acesso a essa área!</h1>
-	<h2>Faça login para ver os agendamentos</h2>
-	<h2><a href="{% url 'cal:login' %}">Login</a></h2>
+	<section class="error-message" style="background-image: url('{% static 'cal/images/garagem.jpeg' %}');">
+		<div class="rgba-color">
+			<div class="error-content">
+				<a href="{% url 'cal:index' %}"><img src="{% static 'cal/images/register.svg' %}" alt="cesar school logo" class="register-img"></a>
+				<h1>Você não tem acesso a essa área!</h1>
+				<h2>Faça login para ver os agendamentos</h2>
+				<h2><a href="{% url 'cal:login' %}">Login</a></h2>
+			</div>
+		</div>
+	</section>
 	{% endif %}
 	
 	{% endblock %}

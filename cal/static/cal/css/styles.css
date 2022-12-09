@@ -21,18 +21,12 @@ body {
 .btn {
   outline: none;
   color: black;
-  background-color: transparent;
-  box-shadow: 0 0 0 0;
-  margin-right: 3px;
+  background-color: white;
+  transition: all 300ms ease-in-out;
 }
-
-.calendar-header{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 30px 0px;
-}  
-
+.btn:hover {
+  color: #FFA067;
+}
 .form {
   margin: auto;
 }
@@ -48,26 +42,47 @@ body {
   width: 100%;
 }
 
-
 .calendar {
   font-size: 13px;
   width: 80%;
-} 
+}
 .calendar-head{
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0px 15px;
+}
+.logout{
+  text-decoration: none;
+  background-color: #DE3806;
+  padding: 3px 10px;
+  border-radius: 15px;
+  color: white;
+  transition: all 300ms ease-in-out;
+}
+.logout:hover{
+  text-decoration: none;
+  color: white;
+  background-color: #FFA067;
+}
+.calendar-header{
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 .calendar tr,
 .calendar td {
-  border: 1px solid black;
+  border: 2px solid grey;
 }
 
 .calendar th {
   padding: 10px;
   text-align: center;
   font-size: 18px;
+  color: #FFA067;
 }
 
 .calendar td {
@@ -78,19 +93,25 @@ body {
 
 .month {
   font-size: 25px;
+  color: #FFA067;
 }
 
 .date {
   font-size: 16px;
+  color: #FFA067;
 }
 
 ul {
   height: 100%;
   padding: 0px 5px 0px 20px;
+  color: white;
 }
+ul a{
+  text-decoration: none;
+}
+ul a:hover{
+  text-decoration: none;
 
-a {
-  color: #17a2b8;
 }
 
 .informacao {
@@ -113,7 +134,9 @@ a {
   color: white;
 }
 .calendar-content{
+  margin-top: 50px;
   height: fit-content;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -164,9 +187,9 @@ a {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
-/* .index-content img{
-  margin-bottom: 50px;
-} */
+.index-content img{
+  width: 200px;
+} 
 .register-content{
   border-radius: 20px;
   height: fit-content;
@@ -408,6 +431,37 @@ a {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
+.error-message{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+}
+.error-content{
+  color: white;
+  background-color: rgba(255, 255,255, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 10px;
+}
+.error-content img{
+  margin-bottom: 20px;
+  width: 200px;
+}
+.error-message a{
+  text-decoration: none;
+  color: #DE3806;
+  transition: all 300ms ease-in-out;
+}
+.error-message a:hover{
+  color: #FFA067;
+}
 @media (max-width:1050px){
   .index-content{
     width: 30%;
@@ -426,5 +480,16 @@ a {
 @media (max-width:900px){
   .index-content{
     width: 80%;
+  }
+}
+@media (max-width:473px){
+  .index-content{
+    width: 80%;
+  }
+  .calendar{
+    width: 100%;
+  }
+  .calendar-header{
+    width: 100%;
   }
 }

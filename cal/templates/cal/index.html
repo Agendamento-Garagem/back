@@ -14,14 +14,14 @@
 </head>
 <body>
   {% if request.user.is_authenticated %}
-    <section class="index" style="background-image: url('{% static 'cal/images/index.png' %}');">
+    <section class="index" style="background-image: url('{% static 'cal/images/garagem.jpeg' %}');">
       <div class="rgba-color">
         <header class="CenterTitle">
           <h1>Seja bem-vindo</h1>
         </header>
           <div class="index-buttons">
             <div class="index-content">
-              <img src="{% static 'cal/images/index.svg' %}" alt="cesar school logo">
+              <img src="{% static 'cal/images/register.svg' %}" alt="cesar school logo" class="register-img">
               <div class="buttons2">
                 <a href="{% url 'cal:calendar' %}">Calendário</a>
               </div>
@@ -30,14 +30,14 @@
       </div>
     </section>
     {% else %}
-      <section class="index" style="background-image: url('{% static 'cal/images/index.png' %}');">
+      <section class="index" style="background-image: url('{% static 'cal/images/garagem.jpeg' %}');">
         <div class="rgba-color">
           <header class="CenterTitle">
             <h1>Seja bem-vindo</h1>
           </header>
             <div class="index-buttons">
               <div class="index-content">
-                <img src="{% static 'cal/images/index.svg' %}" alt="cesar school logo">
+                <img src="{% static 'cal/images/register.svg' %}" alt="cesar school logo" class="register-img">
                 <div class="buttons">
                   <a href="/register"> Cadastro de Usuário </a>
                   <a href="/login"> Painel de Login </a>

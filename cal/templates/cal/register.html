@@ -13,7 +13,7 @@
   <title>Agendamento do Garagem</title>
 </head>
 <body>
-    <section class="index" style="background-image: url('{% static 'cal/images/index.png' %}'); overflow:hidden;">
+    <section class="index" style="background-image: url('{% static 'cal/images/garagem.jpeg' %}'); overflow:hidden;">
         <div class="rgba-color">
             {% block content%}
             <div class="register-buttons">
@@ -22,19 +22,19 @@
                     <form method="POST" action="" class="index-form">
                         {% csrf_token %}
                         <div class="form-group">
-                            <input type="text" name="username" id="username" required />
+                            <input type="text" name="username" id="username" required autocomplete = "off" />
                             <label>Nome</label>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" id="email" required >
+                            <input type="email" name="email" id="email" required autocomplete = "off" />
                             <label>Email</label>
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password1" id="password1" required >
+                            <input type="password" name="password1" id="password1" required autocomplete = "off" >
                             <label>Senha</label>
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password2" id="password2" required >
+                            <input type="password" name="password2" id="password2" required autocomplete = "off" >
                             <label>Confirmar senha</label>
                         </div>
                         <button type="submit" value="Criar Usuário" class="index-form-button">Criar usuário</button>

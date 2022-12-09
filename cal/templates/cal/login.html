@@ -14,20 +14,20 @@
 </head>
 
 <body>
-    <section class="login-body" style="background-image: url('{% static 'cal/images/index.png' %}');">
+    <section class="login-body" style="background-image: url('{% static 'cal/images/garagem.jpeg' %}');">
         <div class="rgba-color">
             <div class="login-content">
                 <form method="post" class="login-form">
                     {% csrf_token %}
-                    <img src="{% static 'cal/images/register.svg' %}" alt="Cesar school logo" style="width: 200px;">
+                    <a href="{% url 'cal:index' %}"><img src="{% static 'cal/images/register.svg' %}" alt="Cesar school logo" style="width: 200px;"></a>
                     <div class="input-box">
                         <div class="login__field">
                             <i class="login__icon fas fa-user"></i>
-                            <input type="text" name="username" id="username" class="login__input" placeholder="Nome de usuário">
+                            <input type="text" name="username" id="username" class="login__input" placeholder="Nome de usuário" autocomplete = "off" >
                         </div>
                         <div class="login__field">
                             <i class="login__icon fas fa-lock"></i>
-                            <input type="password" name="password" id="password" class="login__input" placeholder="Senha">
+                            <input type="password" name="password" id="password" class="login__input" placeholder="Senha" autocomplete = "off" >
                         </div>
                         <button type="submit" class="login__submit">Entrar</button>
                         {% if form.errors %}
