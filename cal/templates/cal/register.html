@@ -21,21 +21,21 @@
                     <a href="{% url 'cal:index' %}"><img src="{% static 'cal/images/register.svg' %}" alt="cesar school logo" class="register-img"></a>
                     <form method="POST" action="" class="index-form">
                         {% csrf_token %}
-                        <div class="form-group">
-                            <input type="text" name="username" id="username" required autocomplete = "off" />
-                            <label>Nome</label>
+                        <div class="login__field">
+                            <i class="login__icon fas fa-user"></i>
+                            <input type="text" name="username" id="username" class="login__input" placeholder="Nome de usuário" autocomplete = "off" >
                         </div>
-                        <div class="form-group">
-                            <input type="email" name="email" id="email" required autocomplete = "off" />
-                            <label>Email</label>
+                        <div class="login__field">
+                            <i class="login__icon fas fa-envelope"></i>
+                            <input type="text" name="email" id="email" class="login__input" placeholder="Email" autocomplete = "off" >
                         </div>
-                        <div class="form-group">
-                            <input type="password" name="password1" id="password1" required autocomplete = "off" >
-                            <label>Senha</label>
+                        <div class="login__field">
+                            <i class="login__icon fas fa-lock"></i>
+                            <input type="text" name="password1" id="password1" class="login__input" placeholder="Senha" autocomplete = "off" >
                         </div>
-                        <div class="form-group">
-                            <input type="password" name="password2" id="password2" required autocomplete = "off" >
-                            <label>Confirmar senha</label>
+                        <div class="login__field">
+                            <i class="login__icon fas fa-lock"></i>
+                            <input type="text" name="password2" id="password2" class="login__input" placeholder="Confirmar senha" autocomplete = "off" >
                         </div>
                         <button type="submit" value="Criar Usuário" class="index-form-button">Criar usuário</button>
                     </form>
